@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        #formdiv{
+         height:300px;
+         width: 250px;
+          margin-top:40px;
+          text-align: center;
+          margin-left: 20%;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          padding: auto;
+        }
+        form>input{
+            height:20px;
+            width: 200px;
+            margin-bottom: 20px;
+        }
+        #submit{
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="row">
+        <a href="home.html">Homepage</a>
+        <a href="application.html">Application jobe</a>
+        <a href="bookmark.html">Bookmark</a>
+    </div>
+
+
+    <div id="formdiv"> 
+        <form action="">
+    <label for="">name</label><br>
+    <input type="text" id="name"><br>
+
+    <label for="">email</label><br>
+    <input type="text" id="email"><br>
+
+    <label for="">applied for position</label><br>
+   <select id="position">
+       <option value="...">...</option>
+       <option value="FSD">FSD</option>
+       <option value="BACKEND">BACKEND</option>
+   </select><br>
+
+   <label for="">salary in lpa</label><br>
+    <input type="number" id="salary"><br>
+
+    <input type="submit" id="submit">
+
+   </form>
+   </div>
+
+
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit",myfunction)
+    var arr=JSON.parse(localStorage.getItem("employdetails"))||[]
+    function myfunction(){
+        event.preventDefault()
+
+        var obj={}
+        name1=document.querySelector("#name").value 
+         
+        email1=document.querySelector("#email").value;
+
+        position1=document.querySelector("#position").value;
+
+        salary1=document.querySelector("#salary").value;
+
+        obj.name=name1
+        obj.email=email1
+        obj.post=position1
+        obj.salary=salary1;
+
+       
+        arr.push(obj)
+
+        localStorage.setItem("employdetails",JSON.stringify(arr))
+        window.location.href="application.html"
+
+    }
+</script>

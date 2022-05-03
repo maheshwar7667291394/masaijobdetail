@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        #tablehead{
+            height:50px;
+            width:auto;
+           
+            background-color: blue;
+        }
+        tr>td{
+            border: 1px solid;
+            /* color:rgb(203, 203, 198) */
+        }
+        table{
+            margin-left:50%;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="row">
+        <a href="home.html">Home</a>
+        <a href="application.html">Application jobe</a>
+        <a href="bookmark.html">Bookmark</a>
+    </div>
+    <table>
+        <thead id="tablehead">
+            <tr>
+                <td>NAME</td>
+                <td>EMAIL</td>
+                <td>JOB APPLIED FOR</td>
+                <td>SALARY IN LPA</td>
+                <td>DELATE</td>
+           
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>
+<script>
+
+    arrdata1=JSON.parse(localStorage.getItem("bookmarkelement"))||[];
+    // bookmarkarr=JSON.parse(localStorage.getItem("bookmarkelement"))||[];
+    
+    arrdata1.forEach(function(el,index){
+        TR=document.createElement("tr")
+
+        td1=document.createElement("td")
+        td1.innerText=el.name
+
+        td2=document.createElement("td")
+        td2.innerText=el.email
+
+        td3=document.createElement("td")
+        td3.innerText=el.post
+
+        td4=document.createElement("td")
+        td4.innerText=el.salary
+
+        td5=document.createElement("td")
+        td5.innerText="delate"
+        td5.style.color="red"
+        td5.style.cursor="pointer"
+
+       td5.addEventListener("click",function(){
+           delate(el,index)
+       })
+      
+       
+
+        
+
+        TR.append(td1,td2,td3,td4,td5)
+
+        document.querySelector("tbody").append(TR)
+    })
+
+    function delate(el,index){
+        arrdata1.splice(index,1)
+        localStorage.setItem("bookmarkelement",JSON.stringify(arrdata1))
+        window.location.reload();
+
+    }
+   
+
+</script>
